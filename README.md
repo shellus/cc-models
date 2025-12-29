@@ -88,11 +88,11 @@ jupyter lab --ip=0.0.0.0 --port=3002 --no-browser --allow-root
 
 ## 同类项目对比
 
-| 对比项 | ClaudeCAD | CQAsk | cc-models |
-|--------|-----------|-------|-----------|
-| 形式 | Web 应用 | 前后端分离 Web 应用 | 本地脚本 + Jupyter |
-| 安装 | npm + API key | yarn + conda + 后端服务 | 单个 venv |
-| API | Anthropic API key | OpenAI API key | 无需额外 API（Claude Code 对话） |
-| CAD 引擎 | Three.js（网格） | CadQuery | CadQuery（参数化实体） |
-| 代码可见 | 黑盒生成 | 生成到 backend/ | 项目内，Git 版本控制 |
-| STEP 导出 | ❌ 仅 STL | ✅ | ✅ 可在 SolidWorks 二次编辑 |
+| 对比项 | OpenSCAD | ClaudeCAD | CQAsk | cc-models |
+|--------|----------|-----------|-------|-----------|
+| 形式 | 桌面应用 + CLI | Web 应用 | 前后端分离 Web 应用 | 本地脚本 + Jupyter |
+| 安装 | 安装包 | npm + API key | yarn + conda + 后端服务 | 单个 venv |
+| 语言 | OpenSCAD DSL | - | Python | Python |
+| CAD 内核 | CGAL（网格） | Three.js（网格） | OpenCASCADE（B-Rep） | OpenCASCADE（B-Rep） |
+| STEP 导出 | ❌ 仅 STL/AMF/3MF | ❌ 仅 STL | ✅ | ✅ 可在 SolidWorks 二次编辑 |
+| 圆角/倒角 | 需手动构造 | - | ✅ 内置 fillet/chamfer | ✅ 内置 fillet/chamfer |
