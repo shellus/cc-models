@@ -1,0 +1,10 @@
+# Python 虚拟环境
+venv/
+
+# Jupyter 检查点
+.ipynb_checkpoints/
+
+# 生成的模型文件（可重新生成）
+*.step
+*.stl
+*.3mf
