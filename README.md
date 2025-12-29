@@ -19,7 +19,7 @@ source venv/bin/activate
 
 # 安装依赖（国内镜像）
 PIP_INDEX_URL=https://mirrors.huaweicloud.com/repository/pypi/simple \
-pip install cadquery-ocp cadquery jupyter-cadquery jupyterlab
+pip3 install cadquery-ocp cadquery jupyter-cadquery jupyterlab
 ```
 
 ## 项目结构

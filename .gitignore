@@ -8,3 +8,6 @@ venv/
 *.step
 *.stl
 *.3mf
+
+# 实时截图
+image.png
