@@ -1,6 +1,14 @@
-# AI CAD 工作台
+# cc-models 使用Claude建模
 
-使用 AI + CadQuery 通过对话生成可编辑的参数化 3D 模型，用于 3D 打印。
+> "嘿 Claude，看看这张照片，帮我设计一个放它的支架，可容纳5个，自行搜索悦刻烟弹尺寸参数，每个插槽添加符号标识，顶面使用圆角"
+
+| 输入 | | 输出 |
+|:----:|:----:|:----:|
+| ![输入图片](input.png) | **→** | ![一句话建模](preview.jpg) |
+
+这不是程序员的玩具，这是建模的下一个时代 —— **Vibe CAD**。
+
+拍张照片、说句话，AI 理解你的意图，检索相关参数，生成工业级参数化模型。不满意？继续对话调整，直到完美。基于 CadQuery/OpenCASCADE 内核，导出 STEP 可在 SolidWorks 继续编辑。
 
 ## 特点
 
@@ -77,3 +85,14 @@ jupyter lab --ip=0.0.0.0 --port=3002 --no-browser --allow-root
 
 - [CadQuery 文档](https://cadquery.readthedocs.io/)
 - [jupyter-cadquery](https://github.com/bernhard-42/jupyter-cadquery)
+
+## 同类项目对比
+
+| 对比项 | ClaudeCAD | CQAsk | cc-models |
+|--------|-----------|-------|-----------|
+| 形式 | Web 应用 | 前后端分离 Web 应用 | 本地脚本 + Jupyter |
+| 安装 | npm + API key | yarn + conda + 后端服务 | 单个 venv |
+| API | Anthropic API key | OpenAI API key | 无需额外 API（Claude Code 对话） |
+| CAD 引擎 | Three.js（网格） | CadQuery | CadQuery（参数化实体） |
+| 代码可见 | 黑盒生成 | 生成到 backend/ | 项目内，Git 版本控制 |
+| STEP 导出 | ❌ 仅 STL | ✅ | ✅ 可在 SolidWorks 二次编辑 |
