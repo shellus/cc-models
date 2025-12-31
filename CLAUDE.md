@@ -6,6 +6,22 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 首先阅读 [README.md](README.md) 了解项目结构、环境搭建和使用方法。
 
+## 常用命令
+
+```bash
+# 激活虚拟环境（每次操作前必须执行）
+source venv/bin/activate
+
+# 生成模型（仅预览参数）
+python3 models/relx-holder/model.py
+
+# 生成并导出 STEP/STL
+python3 models/relx-holder/model.py --export
+
+# 启动 Jupyter 预览
+jupyter lab --ip=0.0.0.0 --port=3002 --no-browser --allow-root
+```
+
 ## 开发经验
 
 ### 坐标系

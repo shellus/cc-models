@@ -2,9 +2,9 @@ import cadquery as cq
 
 # ========== 核心参数（以烟弹尺寸为基准） ==========
 # 悦刻5代烟弹尺寸
-pod_long_axis = 18.3   # 烟弹长轴 mm
+pod_long_axis = 18.45   # 烟弹长轴 mm
 pod_short_axis = 9.4   # 烟弹短轴 mm
-clearance = 0.2        # 间隙配合量 mm（凹槽比烟弹大）
+clearance = 0        # 间隙配合量 mm（凹槽比烟弹大），PETG材料下，0.4是一个较为松的数值
 
 # 布局参数
 pod_count = 5              # 烟弹数量
@@ -173,3 +173,15 @@ print(f"凹槽尺寸: {slot_long:.1f} x {slot_short:.1f} mm")
 print(f"凹槽间距: {slot_spacing:.1f} mm（中心到中心）")
 print(f"凹槽深度: {slot_depth} mm + 倒角 {chamfer_top} mm")
 print(f"底部厚度: {bottom_thickness} mm")
+
+# ========== 导出 ==========
+if __name__ == "__main__":
+    import argparse
+    parser = argparse.ArgumentParser()
+    parser.add_argument("--export", action="store_true", help="导出 STEP 和 STL 文件")
+    args = parser.parse_args()
+
+    if args.export:
+        cq.exporters.export(result, "model.step")
+        cq.exporters.export(result, "model.stl")
+        print("已导出: model.step, model.stl")
