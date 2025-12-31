@@ -4,7 +4,8 @@ import cadquery as cq
 # 悦刻5代烟弹尺寸
 pod_long_axis = 18.45   # 烟弹长轴 mm
 pod_short_axis = 9.4   # 烟弹短轴 mm
-clearance = 0        # 间隙配合量 mm（凹槽比烟弹大），PETG材料下，0.4是一个较为松的数值
+clearance = 0.8        # 间隙配合量 mm（凹槽比烟弹大），PETG材料下，0.4是一个较为松的数值
+version = "Relx holder V2" # 版本号标识
 
 # 布局参数
 pod_count = 5              # 烟弹数量
@@ -153,7 +154,16 @@ for i in range(pod_count):
     )
     base = base.cut(chamfer_slot)
 
-# 3. 添加符号
+# 3. 底部版本号凹刻
+text_depth = 0.6  # 凹刻深度 mm
+text_cut = (
+    cq.Workplane("XY")
+    .workplane(offset=-0.01)  # 从底面略微往下开始
+    .text(version, fontsize=6, distance=text_depth + 0.01, halign="center", valign="center")
+)
+base = base.cut(text_cut)
+
+# 4. 添加符号
 symbols = ["-", "+", "N", "=", "z"]
 for i in range(pod_count):
     x_pos = start_x + i * slot_spacing
@@ -182,6 +192,10 @@ if __name__ == "__main__":
     args = parser.parse_args()
 
     if args.export:
-        cq.exporters.export(result, "model.step")
-        cq.exporters.export(result, "model.stl")
-        print("已导出: model.step, model.stl")
+        # 生成有意义的文件名：版本_数量x尺寸_配合量
+        filename_base = f"{version.replace(' ', '_')}_{pod_count}x{pod_long_axis}x{pod_short_axis}_clearance{clearance}"
+        step_file = f"{filename_base}.step"
+        stl_file = f"{filename_base}.stl"
+        cq.exporters.export(result, step_file)
+        cq.exporters.export(result, stl_file)
+        print(f"已导出: {step_file}, {stl_file}")
